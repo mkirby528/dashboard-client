@@ -5,10 +5,21 @@
         this.greetingString
       }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn elevation="2" color="primary" v-if="this.isLoggedIn" @click="this.logoutClicked">Logout</v-btn>
-    <nuxt-link to="/login">      <v-btn elevation="2" color="primary" v-if="!this.isLoggedIn" >Login</v-btn>
-</nuxt-link>
+      <v-btn
+        elevation="2"
+        color="primary"
+        v-if="this.isLoggedIn"
+        @click="this.logoutClicked"
+        >Logout</v-btn
+      >
+      <nuxt-link class="mx-1" to="/login">
+        <v-btn elevation="2" color="primary" v-if="!this.isLoggedIn"
+          >Login</v-btn
+        >
+      </nuxt-link>
 
+              <nuxt-link class="mx-1" to="/register">      <v-btn elevation="2" color="primary" v-if="!this.isLoggedIn" >Register</v-btn>
+              </nuxt-link>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -67,13 +78,13 @@ export default {
     async logoutClicked() {
       const token = this.$cookies.get('jwt')
       console.log(token)
-     
+
       try {
-         const config = {
-        headers: {
-          authorization: token,
-        },
-      }
+        const config = {
+          headers: {
+            authorization: token,
+          },
+        }
         const logoutResponse = await this.$axios.post('/logout', {}, config)
         this.logout()
       } catch (err) {

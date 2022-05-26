@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   data: () => ({
     formData: {
@@ -71,7 +73,9 @@ export default {
     checkbox: false,
   }),
 
-  methods: {
+  methods: { ...mapMutations({
+      login: 'user/login'
+    }),
     validate() {
       this.$refs.form.validate()
     },
@@ -86,7 +90,9 @@ export default {
             color: 'green',
             x: 'center',
           })
-          this.$router.push({ path: '/home' })
+this.$cookies.set('jwt',response.data.user.tokens[0].token,1)
+this.login(response.data.user)
+this.$router.push({ path: '/home' })
         }
       } catch (err) {
         const errorResponse = err.response
