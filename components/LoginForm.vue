@@ -76,7 +76,6 @@ export default {
           console.log(profileResponse)
           let userData = profileResponse.data.user;
           delete userData.password;
-          delete userData.tokens
           this.login(userData)
           this.$router.push({ path: '/home' })
 
