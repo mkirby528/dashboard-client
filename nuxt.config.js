@@ -16,9 +16,14 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  server: {
+    port: 8080 // default: 3000
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@fortawesome/fontawesome-free/css/all.css'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -63,6 +68,9 @@ export default {
           success: colors.green.accent3,
         },
       },
+      icons: {
+        defaultSet: 'fa',    
+      }
     },
   },
 

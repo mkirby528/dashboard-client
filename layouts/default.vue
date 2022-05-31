@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar :clipped-left="clipped" dense fixed app>
       <v-toolbar-title v-if="this.isLoggedIn">{{
         this.greetingString
       }}</v-toolbar-title>
@@ -18,9 +18,18 @@
         >
       </nuxt-link>
 
-              <nuxt-link class="mx-1" to="/register">      <v-btn elevation="2" color="primary" v-if="!this.isLoggedIn" >Register</v-btn>
-              </nuxt-link>
+      <nuxt-link class="mx-1" to="/register">
+        <v-btn elevation="2" color="primary" v-if="!this.isLoggedIn"
+          >Register</v-btn
+        >
+      </nuxt-link>
+      <v-btn class="ma-2" v-if="this.isLoggedIn" @click="drawer = true">
+        <v-icon color="white"> fa-sliders</v-icon>
+      </v-btn>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute temporary right>
+      <v-col><SpotifyLogin class="m-4" /></v-col>
+    </v-navigation-drawer>
     <v-main>
       <v-container>
         <Nuxt />
@@ -37,6 +46,7 @@ export default {
   data() {
     return {
       clipped: false,
+      drawer: false,
     }
   },
   computed: {
@@ -60,7 +70,6 @@ export default {
       }
       try {
         const profileResponse = await this.$axios.get('/profile', config)
-        console.log(profileResponse)
         let userData = profileResponse.data.user
         delete userData.password
         delete userData.tokens
@@ -77,7 +86,6 @@ export default {
     }),
     async logoutClicked() {
       const token = this.$cookies.get('jwt')
-      console.log(token)
 
       try {
         const config = {

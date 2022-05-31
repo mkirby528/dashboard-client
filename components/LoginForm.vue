@@ -59,13 +59,11 @@ export default {
     async submit() {
       try {
         const response = await this.$axios.post('/login', this.formData)
-        console.log(response)
         if(response.status < 400){
            this.$toast('Logged In!',{
             color: 'green',
             x: 'center'
           })
-          console.log(response)
           this.$cookies.set('jwt', response.data.token, 1);
             const config = {
           headers: {
@@ -73,7 +71,6 @@ export default {
           },
         }
           const profileResponse = await this.$axios.get('/profile',config)
-          console.log(profileResponse)
           let userData = profileResponse.data.user;
           delete userData.password;
           this.login(userData)
