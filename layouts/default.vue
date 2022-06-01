@@ -27,9 +27,7 @@
         <v-icon color="white"> fa-sliders</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary right>
-      <v-col><SpotifyLogin class="m-4" /></v-col>
-    </v-navigation-drawer>
+    <SettingsDrawer v-model="drawer"></SettingsDrawer>
     <v-main>
       <v-container>
         <Nuxt />
@@ -86,14 +84,13 @@ export default {
     }),
     async logoutClicked() {
       const token = this.$cookies.get('jwt')
-
       try {
         const config = {
           headers: {
             authorization: token,
           },
         }
-        const logoutResponse = await this.$axios.post('/logout', {}, config)
+        await this.$axios.post('/logout', {}, config)
         this.logout()
       } catch (err) {
         console.log(err)

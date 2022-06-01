@@ -1,12 +1,9 @@
 <template >
   <v-card class="spotify-settings">
     <v-container>
-      <v-row class="grey darken-2 pa-4" align="center"
-      justify="center" >
+      <v-row class="grey darken-2 pa-4" align="center" justify="center">
         <h2 class="mx-2">Spotify</h2>
-        <v-icon  x-large color="white">
-          fa-brands fa-spotify</v-icon
-        >
+        <v-icon x-large color="white"> fa-brands fa-spotify</v-icon>
       </v-row>
       <v-row class="green accent-4">
         <v-col class="text-center">
@@ -42,19 +39,7 @@ export default {
   },
   methods: {
     async redirectToSpotifyLogin() {
-      const token = this.$cookies.get('jwt')
-
-      try {
-        const config = {
-          headers: {
-            authorization: token,
-          },
-        }
-
-        window.location.href = 'http://localhost:3000/spotify/login'
-      } catch (err) {
-        console.log(err)
-      }
+      window.location.href = 'http://localhost:3000/spotify/login'
     },
     async unlinkSpotify() {
       /* Todo: implement unlink:
