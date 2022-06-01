@@ -2,7 +2,7 @@
     <v-container>
      <v-row>
 <v-col>
-1
+<SpotifyWidget></SpotifyWidget>
 </v-col>
 <v-col>
 2
