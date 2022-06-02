@@ -4,7 +4,7 @@
       <v-col xs="12" sm="6">
         <SpotifyTopTracksWidget />
       </v-col>
-      <v-col xs="12" sm="6"> 1 </v-col>
+      <v-col xs="12" sm="6"> </v-col>
     </v-row>
   </v-container>
 </template>

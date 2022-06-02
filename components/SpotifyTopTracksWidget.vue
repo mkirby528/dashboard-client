@@ -4,7 +4,18 @@
       <p>Loading...</p>
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
-    <v-sheet rounded color="grey darken-2" fill-height fluid v-if="!isLoading">
+    <v-sheet
+      rounded
+      raided
+      color="blue-grey darken-4"
+      fill-height
+      fluid
+      v-if="!isLoading"
+    >
+      <v-row no-gutters class="title-row d-flex flex-column justify-center">
+        <h1 class="text-center">Top Tracks:</h1>
+        <v-divider />
+      </v-row>
       <v-row no-gutters v-for="(s, index) in this.topTracks" v-bind:key="s.id">
         <v-col cols="12">
           <SpotifySong class="ma-4" :song="s" :rank="index + 1" />
@@ -53,4 +64,7 @@ export default {
 </script>
 
 <style scoped>
+.title-row {
+  /* border: 2px solid red; */
+}
 </style>
