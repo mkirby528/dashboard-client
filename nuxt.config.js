@@ -1,6 +1,4 @@
 import colors from 'vuetify/es5/util/colors'
-import path from 'path'
-import fs from 'fs'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -30,7 +28,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins/vuetify.js'},{src: '~/plugins/async-computed.js'},
+    { src: '~/plugins/vuetify.js' }, { src: '~/plugins/async-computed.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -72,7 +70,7 @@ export default {
         },
       },
       icons: {
-        defaultSet: 'fa',    
+        defaultSet: 'fa',
       }
     },
   },
