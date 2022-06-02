@@ -1,12 +1,17 @@
 <template>
   <v-card class="rounded-2 pa-0 ma-o" color="purple darken-4" dark>
-    <v-row no-gutters>
-      <v-col class="img-col d-flex pa-3" cols="12" lg="2">
-        <v-img max-height="125" contain :src="song.album.images[0].url"></v-img>
+    <v-row no-gutters class="d-flex justify-center">
+      <v-col class="rank-col text-center" cols="12" lg="2" align-self="center">
+        <v-avatar class="" color="primary" size="80"
+          ><h1>{{ '#' + rank }}</h1></v-avatar
+        >
       </v-col>
-      <v-col cols="12" lg="10">
-        <v-card-title class="" v-text="shortenTitle(song.name)"></v-card-title>
+      <v-col cols="12" lg="8">
+        <v-card-title v-text="shortenTitle(song.name)"></v-card-title>
         <v-card-subtitle v-text="song.artists[0].name"></v-card-subtitle>
+      </v-col>
+      <v-col class="img-col pa-3" cols="12" lg="2">
+        <v-img max-height="125" contain :src="song.album.images[0].url"></v-img>
       </v-col>
     </v-row>
   </v-card>
@@ -28,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.img-col {
-  /* border: 1px solid red; */
+.rank-col {
+  /* border: 1px solid red !important; */
 }
 </style>

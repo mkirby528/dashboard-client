@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       topTracks: [],
-      time_range: 'short_term',
+      time_range: 'long_term',
     }
   },
   computed: {

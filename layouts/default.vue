@@ -30,7 +30,8 @@
     <SettingsDrawer v-model="drawer"></SettingsDrawer>
     <v-main>
       <v-container>
-        <Nuxt />
+        <Nuxt v-if="this.isLoggedIn" />
+        <div v-if="!this.isLoggedIn">Please log in!</div>
       </v-container>
     </v-main>
   </v-app>
