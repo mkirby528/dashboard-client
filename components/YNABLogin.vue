@@ -28,7 +28,7 @@
 export default {
   computed: {
     isYNABLinked() {
-      return false
+      return this.$store.state.user.user.YNABTokenData != undefined
     },
   },
   methods: {

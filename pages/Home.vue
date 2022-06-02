@@ -1,32 +1,24 @@
 <template>
-    <v-container>
-     <v-row>
-<v-col>
-<SpotifyWidget></SpotifyWidget>
-</v-col>
-<v-col>
-2
-</v-col>
- <v-col>
-3
-</v-col>
-</v-row>
+  <v-container fluid>
+    <v-row no-gutters>
+      <v-col xs="12" sm="6">
+        <SpotifyTopTracksWidget />
+      </v-col>
+      <v-col xs="12" sm="6"> 1 </v-col>
+    </v-row>
   </v-container>
- 
-
 </template>
 
 <script>
 export default {
-
-   computed: {
-    isLoggedIn () {
+  computed: {
+    isLoggedIn() {
       return this.$store.state.user.isLoggedIn
     },
-    user(){
-        return this.$store.state.user.user
-    }
-   }
+    user() {
+      return this.$store.state.user.user
+    },
+  },
 }
 </script>
 
