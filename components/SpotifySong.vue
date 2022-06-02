@@ -33,7 +33,7 @@
         ></v-card-subtitle>
       </v-col>
       <v-col align-self="center" class="pa-1" cols="12" lg="3">
-        <v-avatar right tile class="rounded-lg album-avatar" size="100">
+        <v-avatar right tile class="rounded-lg" size="100">
           <v-img :src="song.album.images[0].url"></v-img>
         </v-avatar>
       </v-col>
@@ -59,11 +59,4 @@ export default {
 </script>
 
 <style scoped>
-/* div[class^='col-'],
-div[class*=' col-'] {
-  border: 2px solid black;
-} */
-.album-avatar {
-  border: 2px solid black;
-}
 </style>

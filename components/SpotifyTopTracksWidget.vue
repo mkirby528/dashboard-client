@@ -1,8 +1,11 @@
 <template>
   <v-container class="pa-1">
     <div v-if="isLoading" class="text-center">
-      <p>Loading...</p>
-      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      <v-skeleton-loader
+        class="mx-auto"
+        max-width="300"
+        type="paragraph@10"
+      ></v-skeleton-loader>
     </div>
     <v-sheet
       rounded
@@ -35,12 +38,7 @@ export default {
   },
   computed: {
     isLoading() {
-      const user = this.$store.state.user.user
-      if (!user) {
-        return true
-      } else {
-        return Object.keys(user).length === 0
-      }
+      return this.topTracks.length === 0
     },
   },
   async created() {
