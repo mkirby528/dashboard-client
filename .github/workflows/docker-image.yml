@@ -28,6 +28,6 @@ jobs:
       - name: Update ECS Service 
         run: |
           ecsClusterName='dashboard-server'
-          arn=$(aws ecs list-tasks --cluster dashboard-client --desired-status RUNNING --family dashboard-client-task | egrep "task/" | sed -E "s/.*task\/(.*)\"/\1/")
+          arn=$(aws ecs list-tasks --cluster dashboard-server --desired-status RUNNING --family dashboard-client-task | egrep "task/" | sed -E "s/.*task\/(.*)\"/\1/")
           aws ecs stop-task --cluster ${ecsClusterName} --task ${arn}
           aws ecs update-service --cluster ${ecsClusterName} --service dashboard-client-service  --task-definition dashboard-client-task --desired-count 1 --force-new-deploymen
