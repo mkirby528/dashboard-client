@@ -29,7 +29,7 @@
     </v-app-bar>
     <SettingsDrawer v-model="drawer"></SettingsDrawer>
     <v-main>
-      <v-container>
+      <v-container class="content">
         <Nuxt v-if="this.isLoggedIn" />
         <div v-if="!this.isLoggedIn">Please log in!</div>
       </v-container>
@@ -100,3 +100,14 @@ export default {
   },
 }
 </script>
+<style scoped>
+.content {
+  overflow: auto;
+  max-height: 100%;
+  height: 100%;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  /* border: 2px solid lime; */
+}
+</style>

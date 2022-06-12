@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-1">
+  <v-container class="widget">
     <div v-if="isLoading" class="text-center">
       <v-skeleton-loader
         class="mx-auto"
@@ -8,11 +8,10 @@
       ></v-skeleton-loader>
     </div>
     <v-sheet
+      class="widget-content"
       rounded
-      raided
+      raised
       color="blue-grey darken-4"
-      fill-height
-      fluid
       v-if="!isLoading"
     >
       <v-row no-gutters class="title-row d-flex flex-column justify-center">
@@ -103,7 +102,12 @@ export default {
 </script>
 
 <style scoped>
-.title-row {
-  /* border: 2px solid red; */
+.widget {
+  /* border: 2px solid purple; */
+  padding: 4px;
+  max-height: 100%;
+}
+widget-content {
+  max-height: 100%;
 }
 </style>

@@ -2,7 +2,7 @@
   <v-navigation-drawer
     v-bind:value="value"
     v-on:input="$emit('input', $event)"
-    absolute
+    fixed
     temporary
     right
   >

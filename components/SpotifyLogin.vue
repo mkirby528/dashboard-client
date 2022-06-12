@@ -31,6 +31,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapMutations } from 'vuex'
+
 export default {
   computed: {
     isSpotifyLinked() {
@@ -38,14 +41,33 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      logoutSpotify: 'user/logoutSpotify',
+    }),
     async redirectToSpotifyLogin() {
       window.location.href = 'http://localhost:3000/spotify/login'
     },
     async unlinkSpotify() {
-      /* Todo: implement unlink:
-          1) create backend api route
-          2) call api here and update store 
-        */
+      const token = this.$cookies.get('jwt')
+
+      const config = {
+        headers: {
+          authorization: token,
+        },
+        withCredentials: true,
+      }
+      try {
+        const response = await axios.post(
+          'http://localhost:3000/spotify/logout',
+          {},
+          config
+        )
+        if (response.status === 200) {
+          this.logoutSpotify()
+        }
+      } catch (err) {
+        console.log(err)
+      }
     },
   },
 }
