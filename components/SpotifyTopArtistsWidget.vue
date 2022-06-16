@@ -11,7 +11,7 @@
       class="widget-container"
       rounded
       raised
-      color="purple indigo darken-4"
+      color="purple indigo darken-4 "
       v-if="!isLoading"
     >
       <div
@@ -20,12 +20,13 @@
           widget-header
           d-flex
           flex-column
+          align-center
+          justify-end
           deep-purple
           darken-4
-          align-center
         "
       >
-        <h1 class="text-center">Top Tracks:</h1>
+        <h1 class="text-center">Top Artists:</h1>
         <v-chip-group
           active-class="text-center font-weight-black deep-purple accent-4"
           v-model="time_range"
@@ -39,11 +40,11 @@
       <div class="widget-content">
         <v-row
           no-gutters
-          v-for="(s, index) in this.topTracks"
-          v-bind:key="s.id"
+          v-for="(artist, index) in this.topArtists"
+          v-bind:key="artist.id"
         >
           <v-col cols="12">
-            <SpotifySong class="ma-4" :song="s" :rank="index + 1" />
+            <SpotifyArtist class="ma-4" :artist="artist" :rank="index + 1" />
           </v-col>
         </v-row>
       </div>
@@ -55,13 +56,13 @@
 export default {
   data() {
     return {
-      topTracks: [],
+      topArtists: [],
       time_range: 'short_term',
     };
   },
   computed: {
     isLoading() {
-      return this.topTracks.length === 0;
+      return this.topArtists.length === 0;
     },
   },
   watch: {
@@ -69,7 +70,7 @@ export default {
       const token = this.$cookies.get('jwt');
 
       if (newRange != oldRange) {
-        this.topTracks = [];
+        this.topArtists = [];
         try {
           const config = {
             headers: {
@@ -79,10 +80,11 @@ export default {
             withCredentials: true,
           };
           let topTracksResponse = await this.$axios.get(
-            'spotify/topTracks',
+            'spotify/topArtists',
             config
           );
-          this.topTracks = topTracksResponse.data;
+          this.topArtists = topTracksResponse.data;
+          console.log(this.topArtists);
         } catch (err) {
           console.log(err);
         }
@@ -101,11 +103,12 @@ export default {
         params: { time_range: this.time_range },
         withCredentials: true,
       };
-      let topTracksResponse = await this.$axios.get(
-        'spotify/topTracks',
+      let topArtistsReponse = await this.$axios.get(
+        'spotify/topArtists',
         config
       );
-      this.topTracks = topTracksResponse.data;
+      this.topArtists = topArtistsReponse.data;
+      console.log(this.topArtists);
     } catch (err) {
       console.log(err);
     }
@@ -125,14 +128,12 @@ widget-container {
   position: relative;
 
   max-height: 100%;
-  border: 2px solid lime;
 }
 .widget-header {
   position: sticky;
   top: 0;
   left: 0;
   z-index: 2;
-  border: 2px solid pink;
 }
 .widget-content {
   overflow: auto;

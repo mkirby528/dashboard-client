@@ -1,5 +1,5 @@
 <template>
-  <v-card rounded="xl" class="pa-0 ma-o song-card" color="indigo darken-3" dark>
+  <v-card rounded="xl" class="pa-0 ma-o" color="indigo darken-3" dark>
     <v-row no-gutters justify-center class="fill-height">
       <v-col
         class="d-flex text-center align-center fill-height"
@@ -19,35 +19,29 @@
           ><h1>{{ '#' + rank }}</h1></v-avatar
         >
       </v-col>
-      <v-col align-self="center" class="flex-grow-1 text-left" cols="7">
+      <v-col align-self="center" class="text-left" cols="7">
         <v-tooltip class="title-tooltip" top>
           <template v-slot:activator="{ on, attrs }">
             <v-card-title
               v-bind="attrs"
               v-on="on"
               class="d-block text-truncate"
-              v-text="song.name"
+              v-text="artist.name"
             ></v-card-title
           ></template>
-          <span>{{ song.name }}</span>
+          <span>{{ artist.name }}</span>
         </v-tooltip>
-        <v-card-subtitle
-          class="mt-n8"
-          v-text="song.artists[0].name"
-        ></v-card-subtitle>
       </v-col>
       <v-col fill-height align-self="center" class="pa-1" cols="3">
-        <v-img :src="song.album.images[0].url" class="album-cover"></v-img>
+        <v-img :src="artist.images[0].url" class="album-cover"></v-img>
       </v-col>
     </v-row>
   </v-card>
 </template>
 
 <script>
-import SpotifyLogin from './SpotifyLogin.vue';
 export default {
-  components: { SpotifyLogin },
-  props: ['song', 'rank'],
+  props: ['artist', 'rank'],
   methods: {
     shortenTitle(title) {
       if (title.length <= 45) {
@@ -60,7 +54,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped >
 .title-tooltip {
   z-index: 999;
 }
@@ -86,4 +80,5 @@ export default {
     font-size: 8px;
   }
 }
+</style>
 </style>

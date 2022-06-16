@@ -1,9 +1,14 @@
 <template>
   <v-app dark>
     <v-app-bar :clipped-left="clipped" dense fixed app>
-      <v-toolbar-title v-if="this.isLoggedIn">{{
-        this.greetingString
-      }}</v-toolbar-title>
+      <div v-if="this.isLoggedIn">
+        <v-tooltip right>
+          <template v-slot:activator="{ on }">
+            <v-toolbar-title v-on="on"> {{ greetingString }}</v-toolbar-title>
+          </template>
+          <span>{{ greetingLanguage }}</span>
+        </v-tooltip>
+      </div>
       <v-spacer></v-spacer>
       <v-btn
         elevation="2"
@@ -46,6 +51,8 @@ export default {
     return {
       clipped: false,
       drawer: false,
+      greeting: '',
+      greetingLanguage: '',
     }
   },
   computed: {
@@ -56,7 +63,7 @@ export default {
       return this.$store.state.user.user
     },
     greetingString() {
-      return `Hello ${this.user.firstName}!`
+      return `${this.greeting} ${this.user.firstName}!`
     },
   },
   async created() {
@@ -68,6 +75,12 @@ export default {
         },
       }
       try {
+        const greetingResponse = await this.$axios.get(
+          'https://www.greetingsapi.com/random'
+        )
+        this.greeting = greetingResponse.data.greeting
+        this.greetingLanguage = greetingResponse.data.language
+
         const profileResponse = await this.$axios.get('/profile', config)
         let userData = profileResponse.data.user
         delete userData.password

@@ -24,7 +24,8 @@
     "vuedraggable": "^2.24.3",
     "vuetify": "^2.6.1",
     "vuetify-toast-snackbar": "^0.6.1",
-    "webpack": "^4.46.0"
+    "webpack": "^4.46.0",
+    "ynab": "^1.28.0"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
