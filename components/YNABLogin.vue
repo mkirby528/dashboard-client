@@ -28,12 +28,12 @@
 export default {
   computed: {
     isYNABLinked() {
-      return this.$store.state.user.user.YNABTokenData != undefined
+      return this.$store.state.user.user.YNABTokenData != undefined;
     },
   },
   methods: {
     async redirectToYNABLogin() {
-      window.location.href = 'http://localhost:3000/ynab/login'
+      window.location.href = `${process.env.baseURL}/ynab/login`;
     },
     async unlinkYNAB() {
       /* Todo: implement unlink:
@@ -42,7 +42,7 @@ export default {
         */
     },
   },
-}
+};
 </script>
 
 <style>

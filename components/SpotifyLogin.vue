@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapMutations } from 'vuex'
+import axios from 'axios';
+import { mapMutations } from 'vuex';
 
 export default {
   computed: {
     isSpotifyLinked() {
-      return this.$store.state.user.user.spotifyTokenData != undefined
+      return this.$store.state.user.user.spotifyTokenData != undefined;
     },
   },
   methods: {
@@ -45,32 +45,28 @@ export default {
       logoutSpotify: 'user/logoutSpotify',
     }),
     async redirectToSpotifyLogin() {
-      window.location.href = 'http://localhost:3000/spotify/login'
+      window.location.href = 'http://localhost:3000/spotify/login';
     },
     async unlinkSpotify() {
-      const token = this.$cookies.get('jwt')
+      const token = this.$cookies.get('jwt');
 
       const config = {
         headers: {
           authorization: token,
         },
         withCredentials: true,
-      }
+      };
       try {
-        const response = await axios.post(
-          'http://localhost:3000/spotify/logout',
-          {},
-          config
-        )
+        const response = await axios.post('/spotify/logout', {}, config);
         if (response.status === 200) {
-          this.logoutSpotify()
+          this.logoutSpotify();
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     },
   },
-}
+};
 </script>
 
 <style scoped>
