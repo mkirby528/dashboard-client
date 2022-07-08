@@ -27,11 +27,8 @@
         </div>
       </v-col>
       <v-col class="grid-slot" cols="12" lg="4"
-        ><div><YNABWidget /></div
-      ></v-col>
-      <v-col class="grid-slot" cols="12" lg="4"><div>Howdy</div></v-col>
-      <v-col class="grid-slot" cols="12" lg="4"><div>Howdy</div></v-col>
-      <v-col class="grid-slot" cols="12" lg="4"><div>Howdy</div></v-col>
+        ><SpotifyNowPlayingWidget />
+      </v-col>
     </draggable>
   </v-container>
 </template>
@@ -100,7 +97,7 @@ export default {
   flex: 1;
 }
 .grid {
-  border: 2px solid blueviolet;
+  /* border: 2px solid blueviolet; */
   height: 100%;
   max-height: 100%;
   width: 100%;

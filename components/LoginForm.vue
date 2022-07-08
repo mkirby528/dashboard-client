@@ -8,7 +8,6 @@
       required
     ></v-text-field>
 
-
     <v-text-field
       v-model="formData.password"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -27,7 +26,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations } from 'vuex';
 
 export default {
   data: () => ({
@@ -36,10 +35,7 @@ export default {
       password: '',
     },
     valid: true,
-    usernameRules: [
-      (v) => !!v || 'Name is required',
-
-    ],
+    usernameRules: [(v) => !!v || 'Name is required'],
 
     passwordRules: [(v) => !!v || 'password is required'],
 
@@ -47,51 +43,53 @@ export default {
   }),
 
   methods: {
-      ...mapMutations({
-      login: 'user/login'
+    ...mapMutations({
+      login: 'user/login',
     }),
     validate() {
-      this.$refs.form.validate()
+      this.$refs.form.validate();
     },
     reset() {
-      this.$refs.form.reset()
+      this.$refs.form.reset();
     },
     async submit() {
       try {
-        const response = await this.$axios.post('/login', this.formData)
-        if(response.status < 400){
-           this.$toast('Logged In!',{
+        const response = await this.$axios.post('/login', this.formData);
+        if (response.status < 400) {
+          this.$toast('Logged In!', {
             color: 'green',
-            x: 'center'
-          })
-          this.$cookies.set('jwt', response.data.token, 1);
-            const config = {
-          headers: {
-            authorization: response.data.token,
-          },
-        }
-          const profileResponse = await this.$axios.get('/profile',config)
+            x: 'center',
+          });
+
+          this.$cookies.set('jwt', response.data.token, { maxAge: 3600 });
+
+          const config = {
+            headers: {
+              authorization: response.data.token,
+            },
+          };
+          const profileResponse = await this.$axios.get('/profile', config);
           let userData = profileResponse.data.user;
           delete userData.password;
-          this.login(userData)
-          this.$router.push({ path: '/home' })
-
+          this.login(userData);
+          this.$router.push({ path: '/home' });
         }
       } catch (err) {
-        console.log(err)
-        const errorResponse = err.response
+        console.log(err);
+        const errorResponse = err.response;
         if (errorResponse.status >= 400) {
-          this.$toast('Invalid Login Credentials!',{
+          this.$toast('Invalid Login Credentials!', {
             color: 'red',
-            x: 'center'
-          })
-        }}
+            x: 'center',
+          });
+        }
+      }
     },
     resetValidation() {
-      this.$refs.form.resetValidation()
+      this.$refs.form.resetValidation();
     },
   },
-}
+};
 </script>
 
 <style>
