@@ -27,7 +27,7 @@
         </div>
       </v-col>
       <v-col class="grid-slot" cols="12" lg="4"
-        ><SpotifyNowPlayingWidget />
+        ><SpotifyNowPlayingWidget v-if="isSpotifyLinked" />
       </v-col>
     </draggable>
   </v-container>
