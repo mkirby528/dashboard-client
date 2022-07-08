@@ -45,7 +45,9 @@ export default {
       logoutSpotify: 'user/logoutSpotify',
     }),
     async redirectToSpotifyLogin() {
-      window.location.href = `${process.env.baseURL}/spotify/login`;
+      window.location.href = `${
+        process.env.baseURL
+      }/spotify/login?jwt=${this.$cookies.get('jwt')}`;
     },
     async unlinkSpotify() {
       const token = this.$cookies.get('jwt');
