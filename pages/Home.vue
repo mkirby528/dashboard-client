@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .grid-slot {
-  max-height: 85v;
+  max-height: 85vh;
   height: 100%;
   /* border: 2px solid slateblue; */
   overflow-y: scroll;

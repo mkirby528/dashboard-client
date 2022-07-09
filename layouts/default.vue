@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'DefaultLayout',
@@ -53,41 +53,41 @@ export default {
       drawer: false,
       greeting: '',
       greetingLanguage: '',
-    }
+    };
   },
   computed: {
     isLoggedIn() {
-      return this.$store.state.user.isLoggedIn
+      return this.$store.state.user.isLoggedIn;
     },
     user() {
-      return this.$store.state.user.user
+      return this.$store.state.user.user;
     },
     greetingString() {
-      return `${this.greeting} ${this.user.firstName}!`
+      return `${this.greeting} ${this.user.firstName}!`;
     },
   },
   async created() {
-    const token = this.$cookies.get('jwt')
+    const token = this.$cookies.get('jwt');
     if (token) {
       const config = {
         headers: {
           authorization: token,
         },
-      }
+      };
       try {
         const greetingResponse = await this.$axios.get(
           'https://www.greetingsapi.com/random'
-        )
-        this.greeting = greetingResponse.data.greeting
-        this.greetingLanguage = greetingResponse.data.language
+        );
+        this.greeting = greetingResponse.data.greeting;
+        this.greetingLanguage = greetingResponse.data.language;
 
-        const profileResponse = await this.$axios.get('/profile', config)
-        let userData = profileResponse.data.user
-        delete userData.password
-        delete userData.tokens
-        this.login(userData)
+        const profileResponse = await this.$axios.get('/profile', config);
+        let userData = profileResponse.data.user;
+        delete userData.password;
+        delete userData.tokens;
+        this.login(userData);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     }
   },
@@ -97,21 +97,21 @@ export default {
       logout: 'user/logout',
     }),
     async logoutClicked() {
-      const token = this.$cookies.get('jwt')
+      const token = this.$cookies.get('jwt');
       try {
         const config = {
           headers: {
             authorization: token,
           },
-        }
-        await this.$axios.post('/logout', {}, config)
-        this.logout()
+        };
+        await this.$axios.post('/logout', {}, config);
+        this.logout();
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     },
   },
-}
+};
 </script>
 <style scoped>
 .content {
