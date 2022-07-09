@@ -5,7 +5,7 @@
       :component-data="getComponentData()"
       class="grid-row d-flex"
     >
-      <v-col class="grid-slot" cols="12" lg="4">
+      <v-col class="grid-slot" cols="12" lg="6">
         <div>
           <SpotifyTopTracksWidget v-if="isSpotifyLinked" />
           <v-skeleton-loader
@@ -15,7 +15,7 @@
             type="paragraph@10"
           ></v-skeleton-loader></div
       ></v-col>
-      <v-col class="grid-slot" cols="12" lg="4">
+      <v-col class="grid-slot" cols="12" lg="6">
         <div>
           <SpotifyTopArtistsWidget v-if="isSpotifyLinked" />
           <v-skeleton-loader
@@ -25,9 +25,6 @@
             type="paragraph@10"
           ></v-skeleton-loader>
         </div>
-      </v-col>
-      <v-col class="grid-slot" cols="12" lg="4"
-        ><SpotifyNowPlayingWidget v-if="isSpotifyLinked" />
       </v-col>
     </draggable>
   </v-container>
