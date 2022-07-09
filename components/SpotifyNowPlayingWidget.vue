@@ -105,10 +105,11 @@ export default {
       const token = this.$cookies.get('jwt');
       try {
         const config = {
+          withCredentials: true,
+
           headers: {
             authorization: token,
           },
-          withCredentials: true,
         };
         this.$axios.put('/api/spotify/pause', {}, config);
         this.isPlaying = false;
@@ -120,10 +121,11 @@ export default {
       const token = this.$cookies.get('jwt');
       try {
         const config = {
+          withCredentials: true,
+
           headers: {
             authorization: token,
           },
-          withCredentials: true,
         };
         this.$axios.put('/api/spotify/play', {}, config);
         this.isPlaying = true;

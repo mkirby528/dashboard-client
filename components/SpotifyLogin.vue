@@ -53,10 +53,11 @@ export default {
       const token = this.$cookies.get('jwt');
 
       const config = {
+        withCredentials: true,
+
         headers: {
           authorization: token,
         },
-        withCredentials: true,
       };
       try {
         const response = await axios.post('/api/spotify/logout', {}, config);

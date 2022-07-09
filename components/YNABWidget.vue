@@ -50,10 +50,10 @@ export default {
     const token = this.$cookies.get('jwt');
     try {
       const config = {
+        withCredentials: true,
         headers: {
           authorization: token,
         },
-        withCredentials: true,
       };
       let ynabResponse = await this.$axios.get('/api/ynab/test', config);
       this.data = ynabResponse.data;

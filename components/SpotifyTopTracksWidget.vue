@@ -72,11 +72,12 @@ export default {
         this.topTracks = [];
         try {
           const config = {
+            withCredentials: true,
+
             headers: {
               authorization: token,
             },
             params: { time_range: this.time_range },
-            withCredentials: true,
           };
           let topTracksResponse = await this.$axios.get(
             '/api/spotify/topTracks',
@@ -95,6 +96,7 @@ export default {
     const token = this.$cookies.get('jwt');
     try {
       const config = {
+        withCredentials: true,
         headers: {
           authorization: token,
         },
