@@ -47,7 +47,7 @@ export default {
     async redirectToSpotifyLogin() {
       window.location.href = `${
         process.env.baseURL
-      }/spotify/login/${this.$cookies.get('jwt')}`;
+      }/spotify/login/${encodeURIComponent(btoa(this.$cookies.get('jwt')))}`;
     },
     async unlinkSpotify() {
       const token = this.$cookies.get('jwt');
