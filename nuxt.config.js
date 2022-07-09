@@ -51,7 +51,7 @@ export default {
     '@nuxtjs/proxy'
   ],
   proxy: {
-    '/api/': { target: "http://0.0.0.0:3000", pathRewrite: { '^/api/': '' } }
+    '/api/': { target: process.env.baseURL, pathRewrite: { '^/api/': '' } }
 
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
