@@ -56,10 +56,10 @@ export default {
       try {
         const response = await this.$axios.post('/login', this.formData);
         if (response.status < 400) {
-          this.$toast('Logged In!', {
-            color: 'green',
-            x: 'center',
-          });
+          // this.$toast('Logged In!', {
+          //   color: 'green',
+          //   x: 'center',
+          // });
 
           this.$cookies.set('jwt', response.data.token, { maxAge: 3600 });
 
