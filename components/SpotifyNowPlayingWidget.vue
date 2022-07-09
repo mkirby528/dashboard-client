@@ -90,7 +90,7 @@ export default {
           withCredentials: true,
         };
         const nowPlayingResponse = await this.$axios.get(
-          'spotify/nowPlaying',
+          '/apispotify/nowPlaying',
           config
         );
         this.nowPlayingData = nowPlayingResponse.data;
@@ -110,7 +110,7 @@ export default {
           },
           withCredentials: true,
         };
-        this.$axios.put('spotify/pause', {}, config);
+        this.$axios.put('/api/spotify/pause', {}, config);
         this.isPlaying = false;
       } catch (err) {
         console.log(err);
@@ -125,7 +125,7 @@ export default {
           },
           withCredentials: true,
         };
-        this.$axios.put('spotify/play', {}, config);
+        this.$axios.put('/api/spotify/play', {}, config);
         this.isPlaying = true;
         this.loadNowPlayingData();
       } catch (err) {

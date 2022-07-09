@@ -55,7 +55,7 @@ export default {
         },
         withCredentials: true,
       };
-      let ynabResponse = await this.$axios.get('ynab/test', config);
+      let ynabResponse = await this.$axios.get('/api/ynab/test', config);
       this.data = ynabResponse.data;
       console.log(this.data);
     } catch (err) {

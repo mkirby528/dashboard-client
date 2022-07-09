@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations } from 'vuex';
 
 export default {
   data: () => ({
@@ -78,38 +78,38 @@ export default {
       login: 'user/login',
     }),
     validate() {
-      this.$refs.form.validate()
+      this.$refs.form.validate();
     },
     reset() {
-      this.$refs.form.reset()
+      this.$refs.form.reset();
     },
     async submit() {
       try {
-        const response = await this.$axios.post('/register', this.formData)
+        const response = await this.$axios.post('/api/register', this.formData);
         if (response.status === 201) {
           this.$toast('User Created!', {
             color: 'green',
             x: 'center',
-          })
-          this.$cookies.set('jwt', response.data.user.tokens[0].token, 1)
-          this.login(response.data.user)
-          this.$router.push({ path: '/home' })
+          });
+          this.$cookies.set('jwt', response.data.user.tokens[0].token, 1);
+          this.login(response.data.user);
+          this.$router.push({ path: '/home' });
         }
       } catch (err) {
-        const errorResponse = err.response
+        const errorResponse = err.response;
         if (errorResponse.status === 409) {
           this.$toast('A user already exists with that username.', {
             color: 'red',
             x: 'center',
-          })
+          });
         }
       }
     },
     resetValidation() {
-      this.$refs.form.resetValidation()
+      this.$refs.form.resetValidation();
     },
   },
-}
+};
 </script>
 
 <style>

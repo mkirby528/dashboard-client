@@ -79,7 +79,7 @@ export default {
             withCredentials: true,
           };
           let topTracksResponse = await this.$axios.get(
-            'spotify/topTracks',
+            '/api/spotify/topTracks',
             config
           );
           this.topTracks = topTracksResponse.data;
@@ -102,7 +102,7 @@ export default {
         withCredentials: true,
       };
       let topTracksResponse = await this.$axios.get(
-        'spotify/topTracks',
+        '/api/spotify/topTracks',
         config
       );
       this.topTracks = topTracksResponse.data;

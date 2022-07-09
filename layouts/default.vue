@@ -81,7 +81,7 @@ export default {
         this.greeting = greetingResponse.data.greeting;
         this.greetingLanguage = greetingResponse.data.language;
 
-        const profileResponse = await this.$axios.get('/profile', config);
+        const profileResponse = await this.$axios.get('/api/profile', config);
         let userData = profileResponse.data.user;
         delete userData.password;
         delete userData.tokens;
@@ -104,7 +104,7 @@ export default {
             authorization: token,
           },
         };
-        await this.$axios.post('/logout', {}, config);
+        await this.$axios.post('/api/logout', {}, config);
         this.logout();
       } catch (err) {
         console.log(err);

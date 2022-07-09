@@ -59,7 +59,7 @@ export default {
         withCredentials: true,
       };
       try {
-        const response = await axios.post('/spotify/logout', {}, config);
+        const response = await axios.post('/api/spotify/logout', {}, config);
         if (response.status === 200) {
           this.logoutSpotify();
         }

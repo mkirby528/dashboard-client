@@ -54,7 +54,7 @@ export default {
     },
     async submit() {
       try {
-        const response = await this.$axios.post('/login', this.formData);
+        const response = await this.$axios.post('/api/login', this.formData);
         if (response.status < 400) {
           // this.$toast('Logged In!', {
           //   color: 'green',
@@ -68,7 +68,7 @@ export default {
               authorization: response.data.token,
             },
           };
-          const profileResponse = await this.$axios.get('/profile', config);
+          const profileResponse = await this.$axios.get('/api/profile', config);
           let userData = profileResponse.data.user;
           delete userData.password;
           this.login(userData);
